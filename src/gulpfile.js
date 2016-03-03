@@ -32,8 +32,11 @@ gulp.task('minifyimage', function () {
 gulp.task('sass',function(){
   gulp.src('styles/main.scss').pipe(sass({outputStyle:'compressed'})).on('error', handleError).pipe(autoprefixer()).pipe(gulp.dest('../styles')).pipe(browserSync.reload({stream:true}))
 });
+gulp.task('rebuild',['build'],function(){
+  browserSync.reload()
+});
 gulp.task('watch',function(){
-	gulp.watch(['**/*.html'],['build']);
+	gulp.watch(['**/*.html'],['rebuild']);
 	gulp.watch(['styles/*.scss'],['sass']);
 });
 gulp.task('default',['browser-sync','minifyimage','watch'])
