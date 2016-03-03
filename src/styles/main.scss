@@ -4,27 +4,56 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
-  body {
+  text-decoration: none;
+  font-family: 'Ubuntu', sans-serif;
+  color: white;
+  .wrap {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    .header {
+    .app-header {
       height: 80px;
       background: $primary-color;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      i {
+        font-size: 20px;
+      }
     }
-    .container {
+    .app-container {
       flex-grow: 1;
+      padding: 16px;
+      overflow-y: auto;
+      p {
+        color: $secondary-text-color;
+      }
     }
-    .footer {
+    .app-footer {
       height: 80px;
       background: $primary-color;
-      ul {
-        display:flex;
-        justify-content: space-around;
-        li a {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+      flex-shrink: 0;
+      display: flex;
+      a {
+        flex-grow: 1;
+        border-left: 2px solid $primary-color-light;
+        text-align: center;
+        padding:18px;
+        font-size: 10px;
+        &:first-child {
+          border-left: 0;
+        }
+        &:hover {
+          background: $primary-color-light;
+          border-top: 4px solid $accent-color;
+        }
+        i {
+          display: block;
+          font-size: 30px;
+          margin-bottom: 8px;
+          text-shadow: 3px 3px 0 rgba(0,0,0,.1)
         }
       }
     }
