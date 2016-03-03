@@ -27,9 +27,7 @@
       flex-grow: 1;
       padding: 16px;
       overflow-y: auto;
-      p {
-        color: $secondary-text-color;
-      }
+      h1 {color: $secondary-text-color;}
     }
     .app-footer {
       height: 80px;
@@ -37,7 +35,7 @@
       flex-shrink: 0;
       display: flex;
       a {
-        flex-grow: 1;
+        flex: 1;
         border-left: 2px solid $primary-color-light;
         text-align: center;
         padding:18px;
