@@ -4,7 +4,15 @@ var autoprefixer = require('gulp-autoprefixer');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var wrap = require('gulp-wrap');
+var browserSync = require('browser-sync').create();
 
+gulp.task('browser-sync', ['sass','build'], function() {
+    browserSync.init({
+        server: {
+            baseDir: ".."
+        }
+    });
+});
 function handleError(err) {
 		console.log(err.toString());
 		this.emit('end');
@@ -22,10 +30,10 @@ gulp.task('minifyimage', function () {
 		.pipe(gulp.dest('../assets'));
 });
 gulp.task('sass',function(){
-  gulp.src('styles/main.scss').pipe(sass({outputStyle:'compressed'})).on('error', handleError).pipe(autoprefixer()).pipe(gulp.dest('../styles'))
+  gulp.src('styles/main.scss').pipe(sass({outputStyle:'compressed'})).on('error', handleError).pipe(autoprefixer()).pipe(gulp.dest('../styles')).pipe(browserSync.reload({stream:true}))
 });
 gulp.task('watch',function(){
 	gulp.watch(['**/*.html'],['build']);
 	gulp.watch(['styles/*.scss'],['sass']);
 });
-gulp.task('default',['sass','build','minifyimage','watch'])
+gulp.task('default',['browser-sync','minifyimage','watch'])
